@@ -1,2 +1,6 @@
 # TrumanMustDie
-here is a  new game for the new guy~
+engine version:
+cocos2dx 2.2.4
+
+
+
