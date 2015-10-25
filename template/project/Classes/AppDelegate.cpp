@@ -1,5 +1,6 @@
 #include "AppDelegate.h"
 #include "HelloWorldScene.h"
+#include "CFunGame.h"
 
 USING_NS_CC;
 
@@ -24,11 +25,14 @@ bool AppDelegate::applicationDidFinishLaunching() {
     // set FPS. the default value is 1.0/60 if you don't call this
     pDirector->setAnimationInterval(1.0 / 60);
 
-    // create a scene. it's an autorelease object
-    CCScene *pScene = HelloWorld::scene();
-
-    // run
-    pDirector->runWithScene(pScene);
+//    // create a scene. it's an autorelease object
+//    CCScene *pScene = HelloWorld::scene();
+//
+//    // run
+//    pDirector->runWithScene(pScene);
+    
+    //init CFunGame[BlakcStar]
+    CFunGame::GetInstance()->Initialize();
 
     return true;
 }
@@ -39,6 +43,8 @@ void AppDelegate::applicationDidEnterBackground() {
 
     // if you use SimpleAudioEngine, it must be pause
     // SimpleAudioEngine::sharedEngine()->pauseBackgroundMusic();
+    
+    CFunGame::GetInstance()->handlePause();
 }
 
 // this function will be called when the app is active again
@@ -47,4 +53,6 @@ void AppDelegate::applicationWillEnterForeground() {
 
     // if you use SimpleAudioEngine, it must resume here
     // SimpleAudioEngine::sharedEngine()->resumeBackgroundMusic();
+    
+    CFunGame::GetInstance()->handleResume();
 }

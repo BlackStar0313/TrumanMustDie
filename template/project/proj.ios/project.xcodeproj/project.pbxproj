@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		14B3EF611BDC9CCF009649D2 /* CFunGame.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 14B3EF5F1BDC9CCF009649D2 /* CFunGame.cpp */; settings = {ASSET_TAGS = (); }; };
+		14B3EF661BDCA2A4009649D2 /* base.plist in Resources */ = {isa = PBXBuildFile; fileRef = 14B3EF641BDCA2A4009649D2 /* base.plist */; settings = {ASSET_TAGS = (); }; };
+		14B3EF671BDCA2A4009649D2 /* base.png in Resources */ = {isa = PBXBuildFile; fileRef = 14B3EF651BDCA2A4009649D2 /* base.png */; settings = {ASSET_TAGS = (); }; };
+		14B3EF6B1BDCAF24009649D2 /* CTestScene.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 14B3EF691BDCAF24009649D2 /* CTestScene.cpp */; settings = {ASSET_TAGS = (); }; };
 		15A3D8FF1682F7D5002FB0C5 /* b2BroadPhase.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 15A3D88B1682F7D5002FB0C5 /* b2BroadPhase.cpp */; };
 		15A3D9001682F7D5002FB0C5 /* b2CollideCircle.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 15A3D88D1682F7D5002FB0C5 /* b2CollideCircle.cpp */; };
 		15A3D9011682F7D5002FB0C5 /* b2CollideEdge.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 15A3D88E1682F7D5002FB0C5 /* b2CollideEdge.cpp */; };
@@ -277,6 +281,12 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		14B3EF5F1BDC9CCF009649D2 /* CFunGame.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CFunGame.cpp; sourceTree = "<group>"; };
+		14B3EF621BDC9CF2009649D2 /* CFunGame.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CFunGame.h; sourceTree = "<group>"; };
+		14B3EF641BDCA2A4009649D2 /* base.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = base.plist; sourceTree = "<group>"; };
+		14B3EF651BDCA2A4009649D2 /* base.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = base.png; sourceTree = "<group>"; };
+		14B3EF691BDCAF24009649D2 /* CTestScene.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CTestScene.cpp; sourceTree = "<group>"; };
+		14B3EF6A1BDCAF24009649D2 /* CTestScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CTestScene.h; sourceTree = "<group>"; };
 		15A3D87E1682F7B3002FB0C5 /* cocos2dx.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = cocos2dx.xcodeproj; path = "../../../cocos2d-x-2.2.4/cocos2dx/proj.ios/cocos2dx.xcodeproj"; sourceTree = "<group>"; };
 		15A3D8891682F7D5002FB0C5 /* Box2D.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Box2D.h; sourceTree = "<group>"; };
 		15A3D88B1682F7D5002FB0C5 /* b2BroadPhase.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = b2BroadPhase.cpp; sourceTree = "<group>"; };
@@ -822,6 +832,44 @@
 			path = Classes;
 			sourceTree = "<group>";
 		};
+		14B3EF581BDC99E7009649D2 /* template */ = {
+			isa = PBXGroup;
+			children = (
+				14B3EF5D1BDC9C85009649D2 /* res */,
+				14B3EF5C1BDC9C85009649D2 /* inc */,
+				14B3EF5E1BDC9C85009649D2 /* src */,
+			);
+			name = template;
+			sourceTree = "<group>";
+		};
+		14B3EF5C1BDC9C85009649D2 /* inc */ = {
+			isa = PBXGroup;
+			children = (
+				14B3EF621BDC9CF2009649D2 /* CFunGame.h */,
+			);
+			name = inc;
+			path = ../../inc;
+			sourceTree = "<group>";
+		};
+		14B3EF5D1BDC9C85009649D2 /* res */ = {
+			isa = PBXGroup;
+			children = (
+				14B3EF641BDCA2A4009649D2 /* base.plist */,
+				14B3EF651BDCA2A4009649D2 /* base.png */,
+			);
+			name = res;
+			path = ../../res;
+			sourceTree = "<group>";
+		};
+		14B3EF5E1BDC9C85009649D2 /* src */ = {
+			isa = PBXGroup;
+			children = (
+				14B3EF5F1BDC9CCF009649D2 /* CFunGame.cpp */,
+			);
+			name = src;
+			path = ../../src;
+			sourceTree = "<group>";
+		};
 		15A3D87F1682F7B3002FB0C5 /* Products */ = {
 			isa = PBXGroup;
 			children = (
@@ -1290,6 +1338,8 @@
 				1AFAF8B416D35DE700DB1158 /* AppDelegate.h */,
 				1AFAF8B516D35DE700DB1158 /* HelloWorldScene.cpp */,
 				1AFAF8B616D35DE700DB1158 /* HelloWorldScene.h */,
+				14B3EF691BDCAF24009649D2 /* CTestScene.cpp */,
+				14B3EF6A1BDCAF24009649D2 /* CTestScene.h */,
 			);
 			name = Classes;
 			path = ../Classes;
@@ -1512,6 +1562,7 @@
 				15A3D9B31682F826002FB0C5 /* extensions */,
 				29B97323FDCFA39411CA2CEA /* Frameworks */,
 				080E96DDFE201D6D7F000001 /* ios */,
+				14B3EF581BDC99E7009649D2 /* template */,
 				15AA9C4015B7EC450033D6C2 /* Classes */,
 				78C7DDAA14EBA5050085D0C2 /* Resources */,
 				19C28FACFE9D520D11CA2CBB /* Products */,
@@ -1962,7 +2013,9 @@
 				D4EF94A015BD2D9800D803EB /* Icon-144.png in Resources */,
 				D41A0AD1160F154A004552AE /* Default-568h@2x.png in Resources */,
 				D446FD6E16102124000ADA7B /* Default@2x.png in Resources */,
+				14B3EF661BDCA2A4009649D2 /* base.plist in Resources */,
 				15A3D9961682F7F9002FB0C5 /* CMakeLists.txt in Resources */,
+				14B3EF671BDCA2A4009649D2 /* base.png in Resources */,
 				1AFAF8BC16D35E4900DB1158 /* CloseNormal.png in Resources */,
 				1AFAF8BD16D35E4900DB1158 /* CloseSelected.png in Resources */,
 				1AFAF8BE16D35E4900DB1158 /* HelloWorld.png in Resources */,
@@ -2037,6 +2090,7 @@
 				15A3D99A1682F7F9002FB0C5 /* cpGearJoint.c in Sources */,
 				15A3D99B1682F7F9002FB0C5 /* cpGrooveJoint.c in Sources */,
 				43B91F051949BAF100F7F815 /* CocoLoader.cpp in Sources */,
+				14B3EF6B1BDCAF24009649D2 /* CTestScene.cpp in Sources */,
 				15A3D99C1682F7F9002FB0C5 /* cpPinJoint.c in Sources */,
 				15A3D99D1682F7F9002FB0C5 /* cpPivotJoint.c in Sources */,
 				15A3D99E1682F7F9002FB0C5 /* cpRatchetJoint.c in Sources */,
@@ -2095,6 +2149,7 @@
 				298B29BF18D0668400C1920F /* LabelReader.cpp in Sources */,
 				15A3DA4C1682F826002FB0C5 /* CCControlHuePicker.cpp in Sources */,
 				375BD50F1868454E0024609E /* CCActionFrame.cpp in Sources */,
+				14B3EF611BDC9CCF009649D2 /* CFunGame.cpp in Sources */,
 				15A3DA4D1682F826002FB0C5 /* CCControlPotentiometer.cpp in Sources */,
 				15A3DA4E1682F826002FB0C5 /* CCControlSaturationBrightnessPicker.cpp in Sources */,
 				15A3DA4F1682F826002FB0C5 /* CCControlSlider.cpp in Sources */,
