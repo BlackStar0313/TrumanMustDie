@@ -8,6 +8,7 @@
 
 #include "CFunGame.h"
 #include "CTestScene.h"
+#include "MainGameLayer.h"
 
 CFunGame* CFunGame::m_pThis = NULL;
 
@@ -53,14 +54,14 @@ void CFunGame::InitGameResource()
 
 void CFunGame::EnterGame()
 {
-    //test 
-//    CCScene *pScene = CTestScene::scene();
-//    
-//    if (CCDirector::sharedDirector()->getRunningScene() == NULL) {
-//        CCDirector::sharedDirector()->runWithScene(pScene);
-//    } else {
-//        CCDirector::sharedDirector()->replaceScene(pScene);
-//    }
+//    test 
+    CCScene *pScene = MainGameLayer::scene();
+    
+    if (CCDirector::sharedDirector()->getRunningScene() == NULL) {
+        CCDirector::sharedDirector()->runWithScene(pScene);
+    } else {
+        CCDirector::sharedDirector()->replaceScene(pScene);
+    }
 }
 
 void CFunGame::handlePause()

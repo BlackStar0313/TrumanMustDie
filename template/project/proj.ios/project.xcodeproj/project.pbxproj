@@ -248,6 +248,11 @@
 		43B91F051949BAF100F7F815 /* CocoLoader.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 43B91F031949BAF100F7F815 /* CocoLoader.cpp */; };
 		46513EB1187BFBA200B5ABE1 /* UITouchGroup.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 46513EAF187BFBA200B5ABE1 /* UITouchGroup.cpp */; };
 		7855E0E1153FEF240059DD9A /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = 7855E0DF153FEF240059DD9A /* Default.png */; };
+		9CDE45541BDDD13100B69475 /* bullet_02.png in Resources */ = {isa = PBXBuildFile; fileRef = 9CDE45501BDDD13100B69475 /* bullet_02.png */; settings = {ASSET_TAGS = (); }; };
+		9CDE45551BDDD13100B69475 /* Player.png in Resources */ = {isa = PBXBuildFile; fileRef = 9CDE45511BDDD13100B69475 /* Player.png */; settings = {ASSET_TAGS = (); }; };
+		9CDE45561BDDD13100B69475 /* Projectile.png in Resources */ = {isa = PBXBuildFile; fileRef = 9CDE45521BDDD13100B69475 /* Projectile.png */; settings = {ASSET_TAGS = (); }; };
+		9CDE45571BDDD13100B69475 /* Target.png in Resources */ = {isa = PBXBuildFile; fileRef = 9CDE45531BDDD13100B69475 /* Target.png */; settings = {ASSET_TAGS = (); }; };
+		9CDE455A1BDDD35B00B69475 /* MainGameLayer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9CDE45591BDDD35B00B69475 /* MainGameLayer.cpp */; settings = {ASSET_TAGS = (); }; };
 		BF171245129291EC00B8313A /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BF170DB012928DE900B8313A /* OpenGLES.framework */; };
 		BF1712461292920000B8313A /* libxml2.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = BF170DB212928DE900B8313A /* libxml2.dylib */; };
 		BF1712471292920000B8313A /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = BF170DB412928DE900B8313A /* libz.dylib */; };
@@ -778,6 +783,12 @@
 		46513EAF187BFBA200B5ABE1 /* UITouchGroup.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = UITouchGroup.cpp; sourceTree = "<group>"; };
 		46513EB0187BFBA200B5ABE1 /* UITouchGroup.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UITouchGroup.h; sourceTree = "<group>"; };
 		7855E0DF153FEF240059DD9A /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = SOURCE_ROOT; };
+		9CDE45501BDDD13100B69475 /* bullet_02.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bullet_02.png; sourceTree = "<group>"; };
+		9CDE45511BDDD13100B69475 /* Player.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Player.png; sourceTree = "<group>"; };
+		9CDE45521BDDD13100B69475 /* Projectile.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Projectile.png; sourceTree = "<group>"; };
+		9CDE45531BDDD13100B69475 /* Target.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Target.png; sourceTree = "<group>"; };
+		9CDE45581BDDD33600B69475 /* MainGameLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainGameLayer.h; sourceTree = "<group>"; };
+		9CDE45591BDDD35B00B69475 /* MainGameLayer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = MainGameLayer.cpp; sourceTree = "<group>"; };
 		BF170DB012928DE900B8313A /* OpenGLES.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGLES.framework; path = System/Library/Frameworks/OpenGLES.framework; sourceTree = SDKROOT; };
 		BF170DB212928DE900B8313A /* libxml2.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libxml2.dylib; path = usr/lib/libxml2.dylib; sourceTree = SDKROOT; };
 		BF170DB412928DE900B8313A /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
@@ -846,6 +857,7 @@
 			isa = PBXGroup;
 			children = (
 				14B3EF621BDC9CF2009649D2 /* CFunGame.h */,
+				9CDE45581BDDD33600B69475 /* MainGameLayer.h */,
 			);
 			name = inc;
 			path = ../../inc;
@@ -854,6 +866,10 @@
 		14B3EF5D1BDC9C85009649D2 /* res */ = {
 			isa = PBXGroup;
 			children = (
+				9CDE45501BDDD13100B69475 /* bullet_02.png */,
+				9CDE45511BDDD13100B69475 /* Player.png */,
+				9CDE45521BDDD13100B69475 /* Projectile.png */,
+				9CDE45531BDDD13100B69475 /* Target.png */,
 				14B3EF641BDCA2A4009649D2 /* base.plist */,
 				14B3EF651BDCA2A4009649D2 /* base.png */,
 			);
@@ -865,6 +881,7 @@
 			isa = PBXGroup;
 			children = (
 				14B3EF5F1BDC9CCF009649D2 /* CFunGame.cpp */,
+				9CDE45591BDDD35B00B69475 /* MainGameLayer.cpp */,
 			);
 			name = src;
 			path = ../../src;
@@ -2008,17 +2025,21 @@
 			files = (
 				7855E0E1153FEF240059DD9A /* Default.png in Resources */,
 				D4EF949A15BD2D8B00D803EB /* Icon-57.png in Resources */,
+				9CDE45561BDDD13100B69475 /* Projectile.png in Resources */,
 				D4EF949C15BD2D8E00D803EB /* Icon-114.png in Resources */,
 				D4EF949E15BD2D9600D803EB /* Icon-72.png in Resources */,
 				D4EF94A015BD2D9800D803EB /* Icon-144.png in Resources */,
 				D41A0AD1160F154A004552AE /* Default-568h@2x.png in Resources */,
 				D446FD6E16102124000ADA7B /* Default@2x.png in Resources */,
+				9CDE45541BDDD13100B69475 /* bullet_02.png in Resources */,
 				14B3EF661BDCA2A4009649D2 /* base.plist in Resources */,
 				15A3D9961682F7F9002FB0C5 /* CMakeLists.txt in Resources */,
 				14B3EF671BDCA2A4009649D2 /* base.png in Resources */,
+				9CDE45571BDDD13100B69475 /* Target.png in Resources */,
 				1AFAF8BC16D35E4900DB1158 /* CloseNormal.png in Resources */,
 				1AFAF8BD16D35E4900DB1158 /* CloseSelected.png in Resources */,
 				1AFAF8BE16D35E4900DB1158 /* HelloWorld.png in Resources */,
+				9CDE45551BDDD13100B69475 /* Player.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2053,6 +2074,7 @@
 				15A3D9111682F7D5002FB0C5 /* b2Body.cpp in Sources */,
 				15A3D9121682F7D5002FB0C5 /* b2ContactManager.cpp in Sources */,
 				38FA2EB0194EA58000FF2BE4 /* CCActionTimeline.cpp in Sources */,
+				9CDE455A1BDDD35B00B69475 /* MainGameLayer.cpp in Sources */,
 				15A3D9131682F7D5002FB0C5 /* b2Fixture.cpp in Sources */,
 				15A3D9141682F7D5002FB0C5 /* b2Island.cpp in Sources */,
 				15A3D9151682F7D5002FB0C5 /* b2World.cpp in Sources */,
