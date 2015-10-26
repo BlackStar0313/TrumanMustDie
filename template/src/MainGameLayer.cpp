@@ -9,6 +9,7 @@
 #include <stdio.h>
 #include "MainGameLayer.h"
 
+
 USING_NS_CC;
 
 CCScene* MainGameLayer::scene()
@@ -30,59 +31,151 @@ bool MainGameLayer::init()
         return false;
     }
     
-    
-    CCSize visibleSize = CCDirector::sharedDirector()->getVisibleSize();
-    
-    CCPoint origin = CCDirector::sharedDirector()->getVisibleOrigin();
+    this->setTouchEnabled(true);
+
+    //setBackground();
     
     // bullet straight move to player.
-    CCSprite *player = CCSprite::create("Player.png");
-    player->setPosition(ccp(10 + player->getContentSize().width, origin.y + visibleSize.height / 3 + player->getContentSize().height / 2));
-    this->addChild(player);
-    
-    CCSprite *p_bullet = CCSprite::create("bullet_02.png");
-    p_bullet->setPosition(ccp(origin.x + visibleSize.width - player->getContentSize().width / 2, origin.y + visibleSize.height / 3 + player->getContentSize().height / 2));
-    
-    CCActionInterval *moveto = CCMoveTo::create(2, player->getPosition());
-    
-    CCFiniteTimeAction *straigetMove = CCSequence::create(moveto,CCCallFuncN::create(this, callfuncN_selector(MainGameLayer::callBack1)),NULL);
-    
-    p_bullet->runAction(straigetMove);
-    
-    this->addChild(p_bullet);
+//    StraightMove();
     
     //bullet rotate move to player
+//    RotateMove();
     
-    CCSprite *player2 = CCSprite::create("Player.png");
-    
-    player2->setPosition(ccp(10 + player2->getContentSize().width, origin.y + visibleSize.height * 2 / 3 + player2->getContentSize().height / 2));
-    
-    this->addChild(player2);
-
-    CCSprite *p_bullet2 = CCSprite::create("Projectile.png");
-    
-    p_bullet2->setPosition(ccp(origin.x + visibleSize.width - player2->getContentSize().width / 2, origin.y + visibleSize.height * 2 / 3 + player2->getContentSize().height / 2));
-    
-    CCActionInterval *move = CCMoveTo::create(2, player2->getPosition());
-    
-    CCRepeatForever *rotate = CCRepeatForever::create(CCRotateBy::create(1.0f, 360));
-    
-    CCSequence *rotateMove = CCSequence::create(move,CCCallFuncN::create(this, callfuncN_selector(MainGameLayer::callBack1)),NULL);
-    
-    p_bullet2->runAction(rotateMove);
-    
-    p_bullet2->runAction(rotate);
-    
-    this->addChild(p_bullet2);
     
     return true;
     
 }
 
+void MainGameLayer::setBackground()
+{
+    CCSize visibleSize = CCDirector::sharedDirector()->getVisibleSize();
+    
+    CCPoint origin = CCDirector::sharedDirector()->getVisibleOrigin();
+    
+    CCSprite *background = CCSprite::createWithSpriteFrameName("bg.png");
+    
+    background->setPosition(ccp(origin.x + background->getContentSize().width/2,
+                                origin.y + visibleSize.height/2));
+    this->addChild(background,0);
 
-void MainGameLayer::callBack1(CCNode *pSender)
+}
+
+// bullet straight move to player.
+void MainGameLayer::StraightMove()
+{
+    
+    CCSize visibleSize = CCDirector::sharedDirector()->getVisibleSize();
+    
+    CCPoint origin = CCDirector::sharedDirector()->getVisibleOrigin();
+    
+    if (p_player)
+    {
+        removeChild(p_player);
+        p_player = NULL;
+    }
+    
+    if (p_bullet)
+    {
+        removeChild(p_bullet);
+        p_bullet = NULL;
+    }
+    
+    p_player = CCSprite::create("Player.png");
+    //CCSprite *player = CCSprite::createWithSpriteFrameName("bg.png");
+    p_player->setPosition(ccp(10 + p_player->getContentSize().width, origin.y + visibleSize.height / 2 + p_player->getContentSize().height / 2));
+    this->addChild(p_player, 1);
+    
+    p_bullet = CCSprite::create("bullet_02.png");
+    //p_bullet->setTag(1);
+    p_bullet->setPosition(ccp(origin.x + visibleSize.width - p_player->getContentSize().width / 2, origin.y + visibleSize.height / 2 + p_player->getContentSize().height / 2));
+    
+    CCActionInterval *moveto = CCMoveTo::create(2, p_player->getPosition());
+    
+    CCFiniteTimeAction *straigetMove = CCSequence::create(moveto,CCCallFuncN::create(this, callfuncN_selector(MainGameLayer::callBack)),NULL);
+    
+    p_bullet->runAction(straigetMove);
+    
+    this->addChild(p_bullet,1);
+
+    this->getChildByTag(1);
+}
+
+//bullet rotate move to player
+void MainGameLayer::RotateMove()
+{
+    
+    
+    
+    CCSize visibleSize = CCDirector::sharedDirector()->getVisibleSize();
+    
+    CCPoint origin = CCDirector::sharedDirector()->getVisibleOrigin();
+    
+    if (p_player)
+    {
+        removeChild(p_player);
+        p_player = NULL;
+    }
+    if (p_bullet)
+    {
+        removeChild(p_bullet);
+        p_bullet = NULL;
+    }
+    
+    p_player = CCSprite::create("Player.png");
+    
+    
+    p_player->setPosition(ccp(10 + p_player->getContentSize().width, origin.y + visibleSize.height / 3 + p_player->getContentSize().height / 2));
+    
+    
+    
+    this->addChild(p_player,1);
+    
+    p_bullet = CCSprite::create("Projectile.png");
+    
+    p_bullet->setPosition(ccp(origin.x + visibleSize.width - p_player->getContentSize().width / 2, origin.y + visibleSize.height / 2 + p_player->getContentSize().height / 2));
+    
+    CCActionInterval *move = CCMoveTo::create(2, p_player->getPosition());
+    
+    CCRepeatForever *rotate = CCRepeatForever::create(CCRotateBy::create(1.0f, 360));
+    
+    CCSequence *rotateMove = CCSequence::create(move,CCCallFuncN::create(this, callfuncN_selector(MainGameLayer::callBack)),NULL);
+    
+    p_bullet->runAction(rotateMove);
+    
+    p_bullet->runAction(rotate);
+    
+    this->addChild(p_bullet,1);
+    
+    
+
+}
+
+void MainGameLayer::callBack(CCNode *pSender)
 {
     pSender->removeFromParentAndCleanup(true);
+}
+
+void MainGameLayer::ccTouchesBegan(CCSet* pTouches, CCEvent *pEvent)
+{
+    //this->removeFromParentAndCleanup(true);
+    CCTouch *touch = dynamic_cast<CCTouch*>(pTouches->anyObject());
+    if (!touch) return;
+    CCLOG("touch point (%f, %f)",touch->getLocation().x,touch->getLocation().y);
+    switch (num) {
+        case 1:
+            StraightMove();
+            break;
+        case 2:
+            RotateMove();
+            break;
+        default:
+            break;
+    }
+    if ((num++) == MAXACTION)
+    {
+        num = 1;
+    }
+    
 }
 
 
