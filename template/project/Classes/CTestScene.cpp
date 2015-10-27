@@ -34,7 +34,7 @@ bool CTestScene::init()
     CCSize visibleSize = CCDirector::sharedDirector()->getVisibleSize();
     CCPoint origin = CCDirector::sharedDirector()->getVisibleOrigin();
     
-    CCSprite* pSprite = CCSprite::createWithSpriteFrameName("choose_hero.png");
+    CCSprite* pSprite = CCSprite::createWithSpriteFrameName("runeD_5.png");
     pSprite->setPosition(ccp(visibleSize.width / 2 , visibleSize.height / 2));
     this->addChild(pSprite);
     

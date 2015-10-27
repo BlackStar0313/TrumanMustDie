@@ -96,7 +96,9 @@ public:
     
     inline CCNode* getTarget(void) { return m_pTarget; }
     /** The action will modify the target properties. */
-    inline void setTarget(CCNode *pTarget) { m_pTarget = pTarget; }
+    inline void setTarget(CCNode *pTarget) {
+        m_pTarget = pTarget;
+    }
     
     inline CCNode* getOriginalTarget(void) { return m_pOriginalTarget; } 
     /** Set the original target, since target can be nil.
