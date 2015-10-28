@@ -16,7 +16,8 @@ bool AppDelegate::applicationDidFinishLaunching() {
     // initialize director
     CCDirector* pDirector = CCDirector::sharedDirector();
     CCEGLView* pEGLView = CCEGLView::sharedOpenGLView();
-
+    
+    //pEGLView->setFrameSize(1640, 1960);
     pDirector->setOpenGLView(pEGLView);
 	
     // turn on display FPS
@@ -24,7 +25,9 @@ bool AppDelegate::applicationDidFinishLaunching() {
 
     // set FPS. the default value is 1.0/60 if you don't call this
     pDirector->setAnimationInterval(1.0 / 60);
-
+    
+    
+    //pDirector->set
 //    // create a scene. it's an autorelease object
 //    CCScene *pScene = HelloWorld::scene();
 //

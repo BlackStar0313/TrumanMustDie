@@ -248,6 +248,7 @@
 		43B91F051949BAF100F7F815 /* CocoLoader.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 43B91F031949BAF100F7F815 /* CocoLoader.cpp */; };
 		46513EB1187BFBA200B5ABE1 /* UITouchGroup.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 46513EAF187BFBA200B5ABE1 /* UITouchGroup.cpp */; };
 		7855E0E1153FEF240059DD9A /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = 7855E0DF153FEF240059DD9A /* Default.png */; };
+		9C23F8A51BE080780001210C /* ShootLayer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9C23F8A41BE080780001210C /* ShootLayer.cpp */; settings = {ASSET_TAGS = (); }; };
 		9CDE45541BDDD13100B69475 /* bullet_02.png in Resources */ = {isa = PBXBuildFile; fileRef = 9CDE45501BDDD13100B69475 /* bullet_02.png */; settings = {ASSET_TAGS = (); }; };
 		9CDE45551BDDD13100B69475 /* Player.png in Resources */ = {isa = PBXBuildFile; fileRef = 9CDE45511BDDD13100B69475 /* Player.png */; settings = {ASSET_TAGS = (); }; };
 		9CDE45561BDDD13100B69475 /* Projectile.png in Resources */ = {isa = PBXBuildFile; fileRef = 9CDE45521BDDD13100B69475 /* Projectile.png */; settings = {ASSET_TAGS = (); }; };
@@ -783,6 +784,8 @@
 		46513EAF187BFBA200B5ABE1 /* UITouchGroup.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = UITouchGroup.cpp; sourceTree = "<group>"; };
 		46513EB0187BFBA200B5ABE1 /* UITouchGroup.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UITouchGroup.h; sourceTree = "<group>"; };
 		7855E0DF153FEF240059DD9A /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = SOURCE_ROOT; };
+		9C23F8A31BE0805E0001210C /* ShootLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShootLayer.h; sourceTree = "<group>"; };
+		9C23F8A41BE080780001210C /* ShootLayer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ShootLayer.cpp; sourceTree = "<group>"; };
 		9CDE45501BDDD13100B69475 /* bullet_02.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bullet_02.png; sourceTree = "<group>"; };
 		9CDE45511BDDD13100B69475 /* Player.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Player.png; sourceTree = "<group>"; };
 		9CDE45521BDDD13100B69475 /* Projectile.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Projectile.png; sourceTree = "<group>"; };
@@ -858,6 +861,7 @@
 			children = (
 				14B3EF621BDC9CF2009649D2 /* CFunGame.h */,
 				9CDE45581BDDD33600B69475 /* MainGameLayer.h */,
+				9C23F8A31BE0805E0001210C /* ShootLayer.h */,
 			);
 			name = inc;
 			path = ../../inc;
@@ -882,6 +886,7 @@
 			children = (
 				14B3EF5F1BDC9CCF009649D2 /* CFunGame.cpp */,
 				9CDE45591BDDD35B00B69475 /* MainGameLayer.cpp */,
+				9C23F8A41BE080780001210C /* ShootLayer.cpp */,
 			);
 			name = src;
 			path = ../../src;
@@ -2147,6 +2152,7 @@
 				15A3DA381682F826002FB0C5 /* CCControlButtonLoader.cpp in Sources */,
 				15A3DA391682F826002FB0C5 /* CCControlLoader.cpp in Sources */,
 				15A3DA3A1682F826002FB0C5 /* CCData.cpp in Sources */,
+				9C23F8A51BE080780001210C /* ShootLayer.cpp in Sources */,
 				298B29BC18D0668400C1920F /* ImageViewReader.cpp in Sources */,
 				15A3DA3B1682F826002FB0C5 /* CCLabelBMFontLoader.cpp in Sources */,
 				15A3DA3C1682F826002FB0C5 /* CCLabelTTFLoader.cpp in Sources */,

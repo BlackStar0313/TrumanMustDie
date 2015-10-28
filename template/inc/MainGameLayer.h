@@ -19,8 +19,13 @@ USING_NS_CC;
 class MainGameLayer : public cocos2d::CCLayer
 {
 public:
-    MainGameLayer():num(1), m_pPlayer(NULL), m_pBullet(NULL) { }
+    MainGameLayer():m_num(1), m_pPlayer(NULL), m_pBullet(NULL) {
+        m_pCurrent = ccp(0, 0);
+        m_pBulletTarget = ccp(0, 0);
+        m_pPlayerTarget = ccp(0, 0);
+    }
     
+    virtual ~MainGameLayer() { }
     // Here's a difference. Method 'init' in cocos2d-x returns bool, instead of returning 'id' in cocos2d-iphone
     virtual bool init();
     
@@ -52,7 +57,7 @@ public:
     void updateCustom();
     void update(float dt);
 private:
-    int num;
+    int m_num;
     CCSprite *m_pPlayer;
     CCSprite *m_pBullet;
     CCPoint m_pCurrent;

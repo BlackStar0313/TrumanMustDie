@@ -7,7 +7,6 @@
 //
 
 #include <stdio.h>
-#include <math.h>
 #include "MainGameLayer.h"
 
 //#define ABS(a) (a) > 0 ? a : -a
@@ -18,12 +17,14 @@ CCScene* MainGameLayer::scene()
 {
     CCScene *scene = CCScene::create();
     
+    if ( !scene ) {
+        return NULL;
+    }
     MainGameLayer *layer = MainGameLayer::create();
     
     scene->addChild(layer);
     
     return scene;
-    
 }
 
 bool MainGameLayer::init()
@@ -33,12 +34,12 @@ bool MainGameLayer::init()
         return false;
     }
     this->setTouchEnabled(true);
-    //setBackground();
-    
-    // bullet straight move to player.
+//    setBackground();
+//    
+//    bullet straight move to player.
 //    StraightMove();
-    
-    //bullet rotate move to player
+//    
+//    bullet rotate move to player
 //    RotateMove();
     return true;
     
@@ -53,7 +54,7 @@ void MainGameLayer::ccTouchesBegan(CCSet* pTouches, CCEvent *pEvent)
     CCLOG("touch point (%f, %f)",touch->getLocation().x,touch->getLocation().y);
     CCSize visibleSize = CCDirector::sharedDirector()->getVisibleSize();
     CCPoint origin = CCDirector::sharedDirector()->getVisibleOrigin();
-    switch (num) {
+    switch (m_num) {
         case 1:
             StraightMove();
             break;
@@ -98,9 +99,9 @@ void MainGameLayer::ccTouchesBegan(CCSet* pTouches, CCEvent *pEvent)
     }
     if (flag)
     {
-        if (((num++) == MAXACTION))
+        if (((m_num++) == MAXACTION))
         {
-            num = 1;
+            m_num = 1;
         }
     }
     
@@ -386,7 +387,6 @@ void MainGameLayer::updateCustom()
     CCActionInterval *moveBullet = CCMoveTo::create(2, m_pBulletTarget);
     m_pPlayer->runAction(movePlayer);
     m_pBullet->runAction(moveBullet);
-    
 }
 
 
