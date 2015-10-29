@@ -11,23 +11,20 @@
 
 #include <cocos2d.h>
 #define RANDOM(a,b) (rand()%((b)-(a)) + (a))
+#define ABS(a) ((a) > 0 ? (a) : (-a))
 
 USING_NS_CC;
 
 class ShootLayer : public CCLayer
 {
 public:
-    //ShootLayer() : m_pPlayer(NULL), m_difficulty(1), score(0), m_bulletNum(0), m_pEasyBulletArr(NULL),m_pCommonBulletArr(NULL),m_pDiffcultBulletArr(NULL)  {}
+    ShootLayer();
     
-    ShootLayer() : m_pPlayer(NULL), m_difficulty(1), score(0), m_bulletNum(0) {
-        m_targetLocation.x = 0;
-        m_targetLocation.y = 0;
-    }
-    virtual ~ShootLayer() {}
+    virtual ~ShootLayer();
     
     virtual bool init();
     
-    static CCScene* scene();
+    static CCScene* createScene();
     
     void onEnter();
     
@@ -43,28 +40,33 @@ public:
     void LoadGame();
     
     //schedule函数
-    void calcScore();
+    void calcScoreAndBullet();
     void update(float dt);
-    void addBulletNum();
+    void addNewBullet();
     
     //callback函数
     void removeBullet(CCNode *pSender);
     
+    //click事件
+    void pauseBtnClick(CCObject *pSender);
+    
     //触屏事件
-    bool ccTouchBegan(CCTouch* touch,CCEvent* event);
-    void ccTouchMoved(CCTouch* touch,CCEvent* event);
-    void ccTouchEnded(CCTouch* touch,CCEvent* event);
+    bool ccTouchBegan(CCTouch *touch,CCEvent *event);
+    void ccTouchMoved(CCTouch *touch,CCEvent *event);
+    void ccTouchEnded(CCTouch *touch,CCEvent *event);
     
 private:
     CCSprite *m_pPlayer;
     CCPoint m_targetLocation;
+    CCLabelTTF* m_pScore;
     int m_difficulty;
     int m_bulletNum;
-    int score;
+    int m_score;
     
 //    CCArray *m_pEasyBulletArr;
 //    CCArray *m_pCommonBulletArr;
 //    CCArray *m_pDiffcultBulletArr;
+    
 };
 
 

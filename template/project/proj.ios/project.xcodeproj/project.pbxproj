@@ -249,6 +249,12 @@
 		46513EB1187BFBA200B5ABE1 /* UITouchGroup.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 46513EAF187BFBA200B5ABE1 /* UITouchGroup.cpp */; };
 		7855E0E1153FEF240059DD9A /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = 7855E0DF153FEF240059DD9A /* Default.png */; };
 		9C23F8A51BE080780001210C /* ShootLayer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9C23F8A41BE080780001210C /* ShootLayer.cpp */; settings = {ASSET_TAGS = (); }; };
+		9CAA03071BE1B70500171022 /* StartLayer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9CAA03061BE1B70500171022 /* StartLayer.cpp */; settings = {ASSET_TAGS = (); }; };
+		9CAA030A1BE1B74800171022 /* GamePauseLayer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9CAA03091BE1B74800171022 /* GamePauseLayer.cpp */; settings = {ASSET_TAGS = (); }; };
+		9CAA030C1BE1B75A00171022 /* GameOverLayer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9CAA030B1BE1B75A00171022 /* GameOverLayer.cpp */; settings = {ASSET_TAGS = (); }; };
+		9CAA03111BE1DD1C00171022 /* B1.png in Resources */ = {isa = PBXBuildFile; fileRef = 9CAA03101BE1DD1C00171022 /* B1.png */; settings = {ASSET_TAGS = (); }; };
+		9CAA03131BE1E01300171022 /* B1S.png in Resources */ = {isa = PBXBuildFile; fileRef = 9CAA03121BE1E01300171022 /* B1S.png */; settings = {ASSET_TAGS = (); }; };
+		9CAA03151BE205D400171022 /* btn_back.png in Resources */ = {isa = PBXBuildFile; fileRef = 9CAA03141BE205D400171022 /* btn_back.png */; settings = {ASSET_TAGS = (); }; };
 		9CDE45541BDDD13100B69475 /* bullet_02.png in Resources */ = {isa = PBXBuildFile; fileRef = 9CDE45501BDDD13100B69475 /* bullet_02.png */; settings = {ASSET_TAGS = (); }; };
 		9CDE45551BDDD13100B69475 /* Player.png in Resources */ = {isa = PBXBuildFile; fileRef = 9CDE45511BDDD13100B69475 /* Player.png */; settings = {ASSET_TAGS = (); }; };
 		9CDE45561BDDD13100B69475 /* Projectile.png in Resources */ = {isa = PBXBuildFile; fileRef = 9CDE45521BDDD13100B69475 /* Projectile.png */; settings = {ASSET_TAGS = (); }; };
@@ -786,6 +792,15 @@
 		7855E0DF153FEF240059DD9A /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = SOURCE_ROOT; };
 		9C23F8A31BE0805E0001210C /* ShootLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShootLayer.h; sourceTree = "<group>"; };
 		9C23F8A41BE080780001210C /* ShootLayer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ShootLayer.cpp; sourceTree = "<group>"; };
+		9CAA03061BE1B70500171022 /* StartLayer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = StartLayer.cpp; sourceTree = "<group>"; };
+		9CAA03081BE1B72300171022 /* StartLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StartLayer.h; sourceTree = "<group>"; };
+		9CAA03091BE1B74800171022 /* GamePauseLayer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = GamePauseLayer.cpp; sourceTree = "<group>"; };
+		9CAA030B1BE1B75A00171022 /* GameOverLayer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = GameOverLayer.cpp; sourceTree = "<group>"; };
+		9CAA030D1BE1B77200171022 /* GamePauseLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GamePauseLayer.h; sourceTree = "<group>"; };
+		9CAA030E1BE1B78400171022 /* GameOverLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameOverLayer.h; sourceTree = "<group>"; };
+		9CAA03101BE1DD1C00171022 /* B1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = B1.png; sourceTree = "<group>"; };
+		9CAA03121BE1E01300171022 /* B1S.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = B1S.png; sourceTree = "<group>"; };
+		9CAA03141BE205D400171022 /* btn_back.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = btn_back.png; sourceTree = "<group>"; };
 		9CDE45501BDDD13100B69475 /* bullet_02.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bullet_02.png; sourceTree = "<group>"; };
 		9CDE45511BDDD13100B69475 /* Player.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Player.png; sourceTree = "<group>"; };
 		9CDE45521BDDD13100B69475 /* Projectile.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Projectile.png; sourceTree = "<group>"; };
@@ -862,6 +877,9 @@
 				14B3EF621BDC9CF2009649D2 /* CFunGame.h */,
 				9CDE45581BDDD33600B69475 /* MainGameLayer.h */,
 				9C23F8A31BE0805E0001210C /* ShootLayer.h */,
+				9CAA03081BE1B72300171022 /* StartLayer.h */,
+				9CAA030D1BE1B77200171022 /* GamePauseLayer.h */,
+				9CAA030E1BE1B78400171022 /* GameOverLayer.h */,
 			);
 			name = inc;
 			path = ../../inc;
@@ -870,6 +888,9 @@
 		14B3EF5D1BDC9C85009649D2 /* res */ = {
 			isa = PBXGroup;
 			children = (
+				9CAA03141BE205D400171022 /* btn_back.png */,
+				9CAA03121BE1E01300171022 /* B1S.png */,
+				9CAA03101BE1DD1C00171022 /* B1.png */,
 				9CDE45501BDDD13100B69475 /* bullet_02.png */,
 				9CDE45511BDDD13100B69475 /* Player.png */,
 				9CDE45521BDDD13100B69475 /* Projectile.png */,
@@ -887,6 +908,9 @@
 				14B3EF5F1BDC9CCF009649D2 /* CFunGame.cpp */,
 				9CDE45591BDDD35B00B69475 /* MainGameLayer.cpp */,
 				9C23F8A41BE080780001210C /* ShootLayer.cpp */,
+				9CAA03061BE1B70500171022 /* StartLayer.cpp */,
+				9CAA03091BE1B74800171022 /* GamePauseLayer.cpp */,
+				9CAA030B1BE1B75A00171022 /* GameOverLayer.cpp */,
 			);
 			name = src;
 			path = ../../src;
@@ -2028,6 +2052,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9CAA03131BE1E01300171022 /* B1S.png in Resources */,
+				9CAA03111BE1DD1C00171022 /* B1.png in Resources */,
 				7855E0E1153FEF240059DD9A /* Default.png in Resources */,
 				D4EF949A15BD2D8B00D803EB /* Icon-57.png in Resources */,
 				9CDE45561BDDD13100B69475 /* Projectile.png in Resources */,
@@ -2045,6 +2071,7 @@
 				1AFAF8BD16D35E4900DB1158 /* CloseSelected.png in Resources */,
 				1AFAF8BE16D35E4900DB1158 /* HelloWorld.png in Resources */,
 				9CDE45551BDDD13100B69475 /* Player.png in Resources */,
+				9CAA03151BE205D400171022 /* btn_back.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2073,6 +2100,7 @@
 				375BD4C61868411B0024609E /* TriggerObj.cpp in Sources */,
 				375BD4C31868411B0024609E /* ObjectFactory.cpp in Sources */,
 				15A3D90D1682F7D5002FB0C5 /* b2Math.cpp in Sources */,
+				9CAA03071BE1B70500171022 /* StartLayer.cpp in Sources */,
 				15A3D90E1682F7D5002FB0C5 /* b2Settings.cpp in Sources */,
 				15A3D90F1682F7D5002FB0C5 /* b2StackAllocator.cpp in Sources */,
 				15A3D9101682F7D5002FB0C5 /* b2Timer.cpp in Sources */,
@@ -2082,6 +2110,7 @@
 				9CDE455A1BDDD35B00B69475 /* MainGameLayer.cpp in Sources */,
 				15A3D9131682F7D5002FB0C5 /* b2Fixture.cpp in Sources */,
 				15A3D9141682F7D5002FB0C5 /* b2Island.cpp in Sources */,
+				9CAA030A1BE1B74800171022 /* GamePauseLayer.cpp in Sources */,
 				15A3D9151682F7D5002FB0C5 /* b2World.cpp in Sources */,
 				15A3D9161682F7D5002FB0C5 /* b2WorldCallbacks.cpp in Sources */,
 				15A3D9171682F7D5002FB0C5 /* b2ChainAndCircleContact.cpp in Sources */,
@@ -2134,6 +2163,7 @@
 				15A3D9A91682F7F9002FB0C5 /* cpPolyShape.c in Sources */,
 				15A3D9AA1682F7F9002FB0C5 /* cpShape.c in Sources */,
 				15A3D9AB1682F7F9002FB0C5 /* cpSpace.c in Sources */,
+				9CAA030C1BE1B75A00171022 /* GameOverLayer.cpp in Sources */,
 				15A3D9AC1682F7F9002FB0C5 /* cpSpaceComponent.c in Sources */,
 				15A3D9AD1682F7F9002FB0C5 /* cpSpaceHash.c in Sources */,
 				15A3D9AE1682F7F9002FB0C5 /* cpSpaceQuery.c in Sources */,

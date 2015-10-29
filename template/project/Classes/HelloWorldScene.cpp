@@ -2,7 +2,7 @@
 
 USING_NS_CC;
 
-CCScene* HelloWorld::scene()
+CCScene* HelloWorld::createScene()
 {
     // 'scene' is an autorelease object
     CCScene *scene = CCScene::create();

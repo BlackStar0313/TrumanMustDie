@@ -9,7 +9,8 @@
 #include "CFunGame.h"
 #include "CTestScene.h"
 #include "MainGameLayer.h"
-#include "ShootLayer.h"
+#include "StartLayer.h"
+#include "HelloWorldScene.h"
 
 CFunGame* CFunGame::m_pThis = NULL;
 
@@ -56,7 +57,7 @@ void CFunGame::InitGameResource()
 void CFunGame::EnterGame()
 {
 //    test 
-    CCScene *pScene = ShootLayer::scene();
+    CCScene *pScene = StartLayer::createScene();
     
     if (CCDirector::sharedDirector()->getRunningScene() == NULL) {
         CCDirector::sharedDirector()->runWithScene(pScene);
