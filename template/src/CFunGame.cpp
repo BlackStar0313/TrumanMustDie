@@ -52,6 +52,8 @@ void CFunGame::Initialize()
 void CFunGame::InitGameResource()
 {
     CCSpriteFrameCache::sharedSpriteFrameCache()->addSpriteFramesWithFile("base.plist");
+    CCSpriteFrameCache::sharedSpriteFrameCache()->addSpriteFramesWithFile("boom.plist");
+    CCSpriteFrameCache::sharedSpriteFrameCache()->addSpriteFramesWithFile("use.plist");
 }
 
 void CFunGame::EnterGame()

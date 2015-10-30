@@ -8,13 +8,16 @@
 
 #include <stdio.h>
 #include <time.h>
+#include <math.h>
 #include "ShootLayer.h"
 #include "GameOverLayer.h"
 #include "GamePauseLayer.h"
+#include "Bullet.h"
+#define PI 3.1415926
 
 USING_NS_CC;
 
-ShootLayer::ShootLayer() : m_pPlayer(NULL), m_difficulty(1), m_score(0), m_bulletNum(0) {
+ShootLayer::ShootLayer() : m_pPlayer(NULL), m_difficulty(1), m_score(1), m_bulletNum(0), m_second(0) {
     CCSize visibleSize = CCDirector::sharedDirector()->getVisibleSize();
     CCPoint origin = CCDirector::sharedDirector()->getVisibleOrigin();
     m_targetLocation.x = origin.x + visibleSize.width / 2;
@@ -66,8 +69,6 @@ void ShootLayer::onExit()
     CCLayer::onExit();//一定不要忘了调用父类的onExit
 }
 
-
-
 void ShootLayer::setBackground()
 {
     CCSize visibleSize = CCDirector::sharedDirector()->getVisibleSize();
@@ -107,23 +108,24 @@ void ShootLayer::LoadGame()
     pLabel->setPosition(ccp(pauseItem->getPositionX(), pauseItem->getPositionY() + 5));
     this->addChild(pLabel, 1);
     
-    
+    //随机种子
+    srand( (unsigned)time(NULL) );
     
     //创建玩家
     createPlayer();
     
     m_bulletNum = m_difficulty * 3;
    
-    createBullet(m_bulletNum);
+    createBullet();
     
     //玩家跟随鼠标移动
-    //scheduleUpdate();
+    schedule(schedule_selector(ShootLayer::playMove), 0.0f, kCCRepeatForever, 0.0f);
     
-    //every second add score and bullet nums
-    schedule(schedule_selector(ShootLayer::calcScoreAndBullet), 1.0f, kCCRepeatForever, 1.0f);
+    scheduleUpdate();
     
-    //every two second create new bullets
-    schedule(schedule_selector(ShootLayer::addNewBullet), 2.0f, kCCRepeatForever, 0.0f);
+    //every second update
+    schedule(schedule_selector(ShootLayer::updateEverySecond), 1.0f, kCCRepeatForever, 1.0f);
+    
 }
 
 //create one player
@@ -133,32 +135,31 @@ void ShootLayer::createPlayer()
     CCPoint origin = CCDirector::sharedDirector()->getVisibleOrigin();
     if ( !m_pPlayer )
     {
-        m_pPlayer = CCSprite::create("Player.png");
+        m_pPlayer = CCSprite::create("plane.png");
         m_pPlayer->setPosition(ccp(origin.x + visibleSize.width / 2, origin.y + 100));
         this->addChild(m_pPlayer, 1);
     }
 }
 
+//create random position
 CCPoint randChoosePosition()
 {
     CCSize visibleSize = CCDirector::sharedDirector()->getVisibleSize();
-    srand( (unsigned)time(NULL) );
     int direction = RANDOM(0, 3);
-    srand( (unsigned)time(NULL) );
     switch (direction) {
         case 0:
         {
-            return ccp(30, RANDOM(30, int(visibleSize.height)));
+            return ccp(-10, RANDOM(-10, int(visibleSize.height + 10)));
             break;
         }
         case 1:
         {
-            return ccp(RANDOM(30, int(visibleSize.width)), visibleSize.height);
+            return ccp(RANDOM(-10, int(visibleSize.width)), visibleSize.height + 10);
             break;
         }
         case 2:
         {
-            return ccp(visibleSize.width - 30, RANDOM(30, int(visibleSize.height)));
+            return ccp(visibleSize.width + 10, RANDOM(0, int(visibleSize.height + 10)));
             break;
         }
         default:
@@ -171,145 +172,201 @@ CCPoint randChoosePosition()
 }
 
 //create bullet according to difficulty
-void ShootLayer::createBullet(int bulletNum)
+void ShootLayer::createBullet()
 {
-    srand( (unsigned)time(NULL) );
-    int easyBulletNum = 0;
-    int commonBulletNum = 0;
-    int difficultBulletNum = 0;
-    
-    if (m_difficulty <= 3)
-    {
-        easyBulletNum = RANDOM(0, bulletNum);
-        commonBulletNum = bulletNum - easyBulletNum;
-        difficultBulletNum = 0;
-    }
-    else if (m_difficulty <= 6)
-    {
-        difficultBulletNum = RANDOM(5, 10);
-        if (bulletNum - difficultBulletNum != 5) {
-            easyBulletNum = RANDOM(5, bulletNum - difficultBulletNum);
-            commonBulletNum = bulletNum - easyBulletNum - difficultBulletNum;
+    int kind = RANDOM(1, 4);
+    CCSprite *bullet = NULL;
+    switch (kind) {
+        case 1:
+        {
+            bullet = CCSprite::create("bullet_02.png");
+            
+            CCPoint position = randChoosePosition();
+            bullet->setPosition(position);
+            float x = bullet->getPositionX() - m_pPlayer->getPositionX(), y = bullet->getPositionY() - m_pPlayer->getPositionY();
+            //CCLOG("atan %f", atan(x / y) * 180 / PI);
+            CCActionInterval *rotate = CCRotateTo::create(0.1, atan(x / y) * 180 / PI);
+            bullet->runAction(rotate);
+            
+            CCActionInterval *move = CCMoveTo::create(3, m_pPlayer->getPosition());
+            CCSequence *straightMove = CCSequence::create(rotate, move, CCCallFuncN::create(this,callfuncN_selector(ShootLayer::boom)), NULL);
+            bullet->runAction(straightMove);
+            break;
         }
+        case 2:
+        {
+            bullet = CCSprite::createWithSpriteFrameName("runeA_2.png");
+            
+            CCPoint position = randChoosePosition();
+            bullet->setPosition(position);
+            float x = bullet->getPositionX() - m_pPlayer->getPositionX(), y = bullet->getPositionY() - m_pPlayer->getPositionY();
+            //CCLOG("atan %f", atan(x / y) * 180 / PI);
+            CCActionInterval *rotate = CCRotateTo::create(0.1, atan(x / y) * 180 / PI + 90);
+            bullet->runAction(rotate);
+            
+            CCActionInterval *move = CCMoveTo::create(3, m_pPlayer->getPosition());
+            CCSequence *straightMove = CCSequence::create(rotate, move, CCCallFuncN::create(this,callfuncN_selector(ShootLayer::boom)), NULL);
+            bullet->runAction(straightMove);
+            break;
+        }
+        case 3:
+        {
+            bullet = CCSprite::createWithSpriteFrameName("runeA_4.png");
+            
+            CCPoint position = randChoosePosition();
+            bullet->setPosition(position);
+            float x = bullet->getPositionX() - m_pPlayer->getPositionX(), y = bullet->getPositionY() - m_pPlayer->getPositionY();
+            //CCLOG("atan %f", atan(x / y) * 180 / PI);
+            CCActionInterval *rotate = CCRotateTo::create(0.1, atan(x / y) * 180 / PI + 90);
+            bullet->runAction(rotate);
+            
+            CCActionInterval *move = CCMoveTo::create(3, m_pPlayer->getPosition());
+            CCSequence *straightMove = CCSequence::create(rotate, move, CCCallFuncN::create(this,callfuncN_selector(ShootLayer::boom)), NULL);
+            bullet->runAction(straightMove);
+            break;
+        }
+        default:
+            break;
     }
-    else
-    {
-        easyBulletNum = 0;
-        commonBulletNum = RANDOM(0, bulletNum);
-        difficultBulletNum = bulletNum - commonBulletNum - easyBulletNum;
-    }
-//    m_pEasyBulletArr = CCArray::create();
-//    m_pCommonBulletArr = CCArray::create();
-//    m_pDiffcultBulletArr = CCArray::create();
-    for (int i = 0; i < easyBulletNum; i++)
-    {
-        CCSprite *easyBullet = CCSprite::create("bullet_02.png");
-        easyBullet->setPosition(randChoosePosition());
-        CCActionInterval *move = CCMoveTo::create(3, m_pPlayer->getPosition());
-        CCSequence *straightMove = CCSequence::create(move, CCCallFuncN::create(this,callfuncN_selector(ShootLayer::removeBullet)), NULL);
-        easyBullet->runAction(straightMove);
-        this->addChild(easyBullet, 1);
-    }
-    
-    for (int i = 0; i < commonBulletNum; i++)
-    {
-        CCSprite *commonBullet = CCSprite::createWithSpriteFrameName("runeA_2.png");
-        commonBullet->setPosition(randChoosePosition());
-        CCActionInterval *move = CCMoveTo::create(3, m_pPlayer->getPosition());
-        CCActionInterval *move_esae_in = CCEaseIn::create(move, 3.0f);
-        CCFiniteTimeAction *speedMove2 = CCSequence::create(move_esae_in, CCCallFuncN::create(this, callfuncN_selector(ShootLayer::removeBullet)),NULL);
-        commonBullet->runAction(speedMove2);
-        this->addChild(commonBullet, 1);
-    }
-    
-    for (int i = 0; i < difficultBulletNum; i++)
-    {
-        CCSprite *difficultBullet = CCSprite::createWithSpriteFrameName("runeA_2.png");
-        difficultBullet->setPosition(randChoosePosition());
-        CCActionInterval *move = CCMoveTo::create(3, m_pPlayer->getPosition());
-        CCActionInterval *move_esae_in = CCEaseOut::create(move, 3.0f);
-        CCFiniteTimeAction *speedMove2 = CCSequence::create(move_esae_in, CCCallFuncN::create(this, callfuncN_selector(ShootLayer::removeBullet)),NULL);
-        difficultBullet->runAction(speedMove2);
-        this->addChild(difficultBullet, 1);
-    }
+    this->addChild(bullet, 1);
+    //CCRect *bulletRect = CCRect(bullet->getPositionX() - bullet->getContentSize().width / 2, bullet->getPositionY() - bullet->getContentSize().height / 2, bullet->getContentSize().width, bullet->getContentSize().height);
+    m_pBulletArray.push_back(bullet);
 }
 
 //schedule函数
 
 void ShootLayer::update(float dt)
 {
-//    CCLOG("update");
-//    if bump game over
-//    if (true)
-//    {
-//    }
+    //CCSize visibleSize = CCDirector::sharedDirector()->getVisibleSize();
     if (m_pPlayer)
     {
-        CCPoint diff = m_targetLocation - m_pPlayer->getPosition();
-        diff.x = diff.x / ABS(diff.x);
-        diff.y = diff.y / ABS(diff.y);
-        CCLOG("m_targetLocation (%f, %f)", diff.x, diff.y);
-        m_pPlayer->setPosition(m_pPlayer->getPosition() + diff * 3);
-        
+        for (auto it = m_pBulletArray.begin(); it != m_pBulletArray.end(); ++it)
+        {
+            if (((*it)->boundingBox()).intersectsRect(m_pPlayer->boundingBox()))
+            {
+                m_pPlayer->stopAllActions();
+//                removeChild(m_pPlayer);
+//                m_pPlayer = NULL;
+//                (*it)->stopAllActions();
+//                removeChild(*it);
+//                (*it) = NULL;
+                CCDirector::sharedDirector()->replaceScene(GameOverLayer::createScene());
+                break;
+            }
+//            else if ((*it)->getPositionX() < 0 || (*it)->getPositionX() > visibleSize.width || (*it)->getPositionY() < 0 || (*it)->getPositionY() > visibleSize.height)
+//                {
+//                    (*it)->stopAllActions();
+//                    removeChild((*it));
+//                    m_pBulletArray.remove((*it));
+//                    (*it) = NULL;
+//                }
+        }
     }
-    
 }
 
+#if 0
 void ShootLayer::calcScoreAndBullet()
 {
-    //CCLOG("calcScore");
     m_score++;
     CCString str;
     str.initWithFormat("%d",m_score);
     m_pScore->setString(str.getCString());
     m_bulletNum++;
+    CCLOG("bullet num %d", m_bulletNum);
+}
+#endif
+
+
+void ShootLayer::updateEverySecond()
+{
+    //calcScoreAndBullet();
+    m_score++;
+    CCString str;
+    str.initWithFormat("%d",m_score);
+    m_pScore->setString(str.getCString());
+    m_bulletNum = RANDOM(1, m_second + 2) + m_bulletNum;
+    
+    if (m_second % 2 == 0)
+    {
+        for(int i = 0; i < m_bulletNum; i++)
+            createBullet();
+    }
+//    if (m_second % 30 == 0)
+//    {
+//        CCLOG("m_difficulty %d", m_difficulty);
+//        m_difficulty++;
+//    }
+    
+    m_second++;
 }
 
-void ShootLayer::addNewBullet()
+void ShootLayer::playMove()
 {
-    CCLOG("addDiffculty");
-    createBullet(m_bulletNum);
-    m_difficulty++;
+    if (m_pPlayer && (m_targetLocation.x - m_pPlayer->getPositionX() != 0 && m_targetLocation.y- m_pPlayer->getPositionY() != 0))
+    {
+        CCPoint diff = m_targetLocation - m_pPlayer->getPosition();
+        diff.x = diff.x * 1.111111111 / ABS(diff.x);
+        diff.y = diff.y * 1.111111111 / ABS(diff.y);
+        CCLOG("m_targetLocation (%f, %f)", diff.x, diff.y);
+        m_pPlayer->setPosition(m_pPlayer->getPosition() + diff * 3);
+    }
 }
 
 //callback函数
 
-void ShootLayer::removeBullet(CCNode *pSender)
+void ShootLayer::boom(CCNode *pSender)
 {
-    CCLOG("removeBullet");
-    pSender = (CCSprite*)pSender;
     
-    //检测碰撞，即矩形区域是否相交
-    // if bullet fly on player, game over
-    if (m_pPlayer) {
-        if ((pSender->boundingBox()).intersectsRect(m_pPlayer->boundingBox()))
-        {
-            m_pPlayer->stopAllActions();
-            removeChild(m_pPlayer);
-            m_pPlayer = NULL;
-            pSender->stopAllActions();
-            removeChild(pSender);
-            pSender = NULL;
-            CCDirector::sharedDirector()->replaceScene(GameOverLayer::createScene());
-        }
+    if (NULL == pSender) {
+        return;
     }
     
-    // if bullet fly out screen, remove itself
+    pSender->setVisible(false);
+    CCAnimation* animation = CCAnimation::create();
+    for( int i=12; i<=24; i++)
+    {
+        char szName[100] = {0};
+        sprintf(szName, "%02d-1.png", i);
+        animation->addSpriteFrameWithFileName(szName);
+    }
+    // should last 2.8 seconds. And there are 14 frames.
+    animation->setDelayPerUnit(2.8f / 14.0f);
+    animation->setRestoreOriginalFrame(true);
     
+    CCAnimate* action = CCAnimate::create(animation);
+    
+    pSender->runAction(CCSequence::create(action, CCCallFuncN::create(this,callfuncN_selector(ShootLayer::remove)), NULL));
+    
+    CCRect *rectBoom = new CCRect(pSender->getPositionX() - pSender->getContentSize().width / 2, pSender->getPositionY() - pSender->getContentSize().height / 2, 80, 80);
+    m_RectArray.push_back(rectBoom);
+}
+
+void ShootLayer::remove(CCNode *pSender)
+{
+    if (NULL == pSender) {
+        return;
+    }
+    m_pBulletArray.remove((CCSprite*)pSender);
+    pSender->stopAllActions();
+    removeChild(pSender);
+    pSender = NULL;
 }
 
 //click事件
 void ShootLayer::pauseBtnClick(CCObject *pSender)
 {
+    if (NULL == pSender) {
+        return;
+    }
     CCScene *pScene = GamePauseLayer::createScene();
     CCDirector::sharedDirector()->pushScene(pScene);
 }
 
 //触屏事件
-
 bool ShootLayer::ccTouchBegan(CCTouch* touch,CCEvent* event)
 {
     CCLOG("ccTouchBegan");
+    schedule(schedule_selector(ShootLayer::playMove), 0.0f, kCCRepeatForever, 0.0f);
     m_targetLocation = touch->getLocation();
     CCLOG("m_targetLocation (%f, %f)",m_targetLocation.x, m_targetLocation.y);
     return true;
@@ -318,10 +375,12 @@ bool ShootLayer::ccTouchBegan(CCTouch* touch,CCEvent* event)
 void ShootLayer::ccTouchMoved(CCTouch* touch,CCEvent* event)
 {
     //CCLOG("ccTouchMoved");
+    m_targetLocation = touch->getLocation();
 }
 
 void ShootLayer::ccTouchEnded(CCTouch* touch,CCEvent* event)
 {
+    unschedule(schedule_selector(ShootLayer::playMove));
     //CCLOG("ccTouchEnded");
 }
 

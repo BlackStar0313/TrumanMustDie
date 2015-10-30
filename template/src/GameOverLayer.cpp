@@ -31,17 +31,6 @@ bool GameOverLayer::init()
     playLabel->setPosition(ccp(origin.x + visibleSize.width / 2, origin.y + visibleSize.height * 2 / 3));
     this->addChild(playLabel, 1);
     
-//    CCMenuItemImage *restartItem = CCMenuItemImage::create("btn_back.png", "btn_back.png", this,menu_selector(GameOverLayer::restartClick));
-//    
-//    restartItem->setPosition(ccp(playLabel->getPositionX(), playLabel->getPositionY() - 60));
-//    CCMenu* pMenu = CCMenu::create(restartItem, NULL);
-//    pMenu->setPosition(CCPointZero);
-//    this->addChild(pMenu, 1);
-//    
-//    CCLabelTTF *pLabel = CCLabelTTF::create("restart", "Arial", 35);
-//    pLabel->setPosition(ccp(origin.x + visibleSize.width / 2, origin.y + visibleSize.height * 3 / 4));
-//    this->addChild(pLabel, 1);
-    
     //重新开始按钮
     CCMenuItemImage *restartItem = CCMenuItemImage::create("B1.png", "B1S.png", this, menu_selector(GameOverLayer::restartBtnClick));
     restartItem->setPosition(ccp(playLabel->getPositionX(), playLabel->getPositionY() - 100));

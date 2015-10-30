@@ -217,27 +217,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "../../src/ShootLayer.cpp"
-            timestampString = "467804026.396098"
+            timestampString = "467873080.047833"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "144"
-            endingLineNumber = "144"
-            landmarkName = "randChoosePosition()"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "../../src/ShootLayer.cpp"
-            timestampString = "467796925.860248"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "91"
-            endingLineNumber = "91"
+            startingLineNumber = "92"
+            endingLineNumber = "92"
             landmarkName = "ShootLayer::LoadGame()"
             landmarkType = "5">
          </BreakpointContent>
@@ -249,12 +233,12 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "../../src/ShootLayer.cpp"
-            timestampString = "467804026.396098"
+            timestampString = "467897253.70254"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "132"
-            endingLineNumber = "132"
-            landmarkName = "ShootLayer::createPlayer()"
+            startingLineNumber = "178"
+            endingLineNumber = "178"
+            landmarkName = "ShootLayer::createBullet()"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
@@ -265,60 +249,12 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "../../src/ShootLayer.cpp"
-            timestampString = "467804026.396098"
+            timestampString = "467899743.907092"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "204"
-            endingLineNumber = "204"
-            landmarkName = "ShootLayer::createBullet(int bulletNum)"
-            landmarkType = "5">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "../../src/ShootLayer.cpp"
-            timestampString = "467804026.396098"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "214"
-            endingLineNumber = "214"
-            landmarkName = "ShootLayer::createBullet(int bulletNum)"
-            landmarkType = "5">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "../../src/ShootLayer.cpp"
-            timestampString = "467804026.396098"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "225"
-            endingLineNumber = "225"
-            landmarkName = "ShootLayer::createBullet(int bulletNum)"
-            landmarkType = "5">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "../../src/GameOverLayer.cpp"
-            timestampString = "467804297.766152"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "71"
-            endingLineNumber = "71"
-            landmarkName = "GameOverLayer::restartBtnClick(CCObject *pSender)"
+            startingLineNumber = "316"
+            endingLineNumber = "316"
+            landmarkName = "ShootLayer::boom(CCNode *pSender)"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
