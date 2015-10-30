@@ -186,7 +186,7 @@ void ShootLayer::createBullet()
             float x = bullet->getPositionX() - m_pPlayer->getPositionX(), y = bullet->getPositionY() - m_pPlayer->getPositionY();
             //CCLOG("atan %f", atan(x / y) * 180 / PI);
             CCActionInterval *rotate = CCRotateTo::create(0.1, atan(x / y) * 180 / PI);
-            bullet->runAction(rotate);
+            //bullet->runAction(rotate);
             
             CCActionInterval *move = CCMoveTo::create(3, m_pPlayer->getPosition());
             CCSequence *straightMove = CCSequence::create(rotate, move, CCCallFuncN::create(this,callfuncN_selector(ShootLayer::boom)), NULL);
@@ -195,14 +195,14 @@ void ShootLayer::createBullet()
         }
         case 2:
         {
-            bullet = CCSprite::createWithSpriteFrameName("runeA_2.png");
+            bullet = CCSprite::create("runeA_2.png");
             
             CCPoint position = randChoosePosition();
             bullet->setPosition(position);
             float x = bullet->getPositionX() - m_pPlayer->getPositionX(), y = bullet->getPositionY() - m_pPlayer->getPositionY();
             //CCLOG("atan %f", atan(x / y) * 180 / PI);
-            CCActionInterval *rotate = CCRotateTo::create(0.1, atan(x / y) * 180 / PI + 90);
-            bullet->runAction(rotate);
+            CCActionInterval *rotate = CCRotateTo::create(0.1, atan(x / y) * 180 / PI - 90);
+//            bullet->runAction(rotate);
             
             CCActionInterval *move = CCMoveTo::create(3, m_pPlayer->getPosition());
             CCSequence *straightMove = CCSequence::create(rotate, move, CCCallFuncN::create(this,callfuncN_selector(ShootLayer::boom)), NULL);
@@ -211,14 +211,14 @@ void ShootLayer::createBullet()
         }
         case 3:
         {
-            bullet = CCSprite::createWithSpriteFrameName("runeA_4.png");
+            bullet = CCSprite::create("runeA_4.png");
             
             CCPoint position = randChoosePosition();
             bullet->setPosition(position);
             float x = bullet->getPositionX() - m_pPlayer->getPositionX(), y = bullet->getPositionY() - m_pPlayer->getPositionY();
             //CCLOG("atan %f", atan(x / y) * 180 / PI);
-            CCActionInterval *rotate = CCRotateTo::create(0.1, atan(x / y) * 180 / PI + 90);
-            bullet->runAction(rotate);
+            CCActionInterval *rotate = CCRotateTo::create(0.1, atan(x / y) * 180 / PI - 90);
+            //bullet->runAction(rotate);
             
             CCActionInterval *move = CCMoveTo::create(3, m_pPlayer->getPosition());
             CCSequence *straightMove = CCSequence::create(rotate, move, CCCallFuncN::create(this,callfuncN_selector(ShootLayer::boom)), NULL);
@@ -284,7 +284,7 @@ void ShootLayer::updateEverySecond()
     CCString str;
     str.initWithFormat("%d",m_score);
     m_pScore->setString(str.getCString());
-    m_bulletNum = RANDOM(1, m_second + 2) + m_bulletNum;
+    m_bulletNum = RANDOM(1, m_second + 2);
     
     if (m_second % 2 == 0)
     {
@@ -302,12 +302,23 @@ void ShootLayer::updateEverySecond()
 
 void ShootLayer::playMove()
 {
-    if (m_pPlayer && (m_targetLocation.x - m_pPlayer->getPositionX() != 0 && m_targetLocation.y- m_pPlayer->getPositionY() != 0))
+    if (m_pPlayer && ((m_targetLocation.x - m_pPlayer->getPositionX() != 0) && (m_targetLocation.y- m_pPlayer->getPositionY() != 0)))
     {
-        CCPoint diff = m_targetLocation - m_pPlayer->getPosition();
-        diff.x = diff.x * 1.111111111 / ABS(diff.x);
-        diff.y = diff.y * 1.111111111 / ABS(diff.y);
-        CCLOG("m_targetLocation (%f, %f)", diff.x, diff.y);
+        float x = m_targetLocation.x - m_pPlayer->getPositionX();
+        float y = m_targetLocation.y - m_pPlayer->getPositionY();
+        //double angle = atan(x / y) * 180 / PI;
+        double angle;
+        CCPoint diff;
+        if (x >= 0)
+        {
+            angle = atan(y / x);
+        }
+        else
+        {
+            angle = atan(-y / x);
+        }
+        diff.x = cos(angle);
+        diff.y = sin(angle);
         m_pPlayer->setPosition(m_pPlayer->getPosition() + diff * 3);
     }
 }
@@ -321,7 +332,7 @@ void ShootLayer::boom(CCNode *pSender)
         return;
     }
     
-    pSender->setVisible(false);
+//    pSender->setVisible(false);
     CCAnimation* animation = CCAnimation::create();
     for( int i=12; i<=24; i++)
     {
@@ -330,7 +341,7 @@ void ShootLayer::boom(CCNode *pSender)
         animation->addSpriteFrameWithFileName(szName);
     }
     // should last 2.8 seconds. And there are 14 frames.
-    animation->setDelayPerUnit(2.8f / 14.0f);
+    animation->setDelayPerUnit(1 / 60.0f);
     animation->setRestoreOriginalFrame(true);
     
     CCAnimate* action = CCAnimate::create(animation);

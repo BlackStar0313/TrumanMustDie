@@ -265,6 +265,9 @@
 		9CBF88831BE31DDD0071B18A /* Target.png in Resources */ = {isa = PBXBuildFile; fileRef = 9CBF88321BE31DDD0071B18A /* Target.png */; settings = {ASSET_TAGS = (); }; };
 		9CBF88841BE31DDD0071B18A /* use.plist in Resources */ = {isa = PBXBuildFile; fileRef = 9CBF88331BE31DDD0071B18A /* use.plist */; settings = {ASSET_TAGS = (); }; };
 		9CBF88851BE31DDD0071B18A /* use.png in Resources */ = {isa = PBXBuildFile; fileRef = 9CBF88341BE31DDD0071B18A /* use.png */; settings = {ASSET_TAGS = (); }; };
+		9CBF888B1BE39EA50071B18A /* bullet_02.png in Resources */ = {isa = PBXBuildFile; fileRef = 9CBF888A1BE39EA50071B18A /* bullet_02.png */; settings = {ASSET_TAGS = (); }; };
+		9CBF888D1BE39FC60071B18A /* runeA_4.png in Resources */ = {isa = PBXBuildFile; fileRef = 9CBF888C1BE39FC60071B18A /* runeA_4.png */; settings = {ASSET_TAGS = (); }; };
+		9CBF888F1BE39FCD0071B18A /* runeA_2.png in Resources */ = {isa = PBXBuildFile; fileRef = 9CBF888E1BE39FCD0071B18A /* runeA_2.png */; settings = {ASSET_TAGS = (); }; };
 		9CDE455A1BDDD35B00B69475 /* MainGameLayer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9CDE45591BDDD35B00B69475 /* MainGameLayer.cpp */; settings = {ASSET_TAGS = (); }; };
 		BF171245129291EC00B8313A /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BF170DB012928DE900B8313A /* OpenGLES.framework */; };
 		BF1712461292920000B8313A /* libxml2.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = BF170DB212928DE900B8313A /* libxml2.dylib */; };
@@ -818,6 +821,9 @@
 		9CBF88321BE31DDD0071B18A /* Target.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Target.png; path = ../../res/Target.png; sourceTree = "<group>"; };
 		9CBF88331BE31DDD0071B18A /* use.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = use.plist; path = ../../res/use.plist; sourceTree = "<group>"; };
 		9CBF88341BE31DDD0071B18A /* use.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = use.png; path = ../../res/use.png; sourceTree = "<group>"; };
+		9CBF888A1BE39EA50071B18A /* bullet_02.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bullet_02.png; sourceTree = "<group>"; };
+		9CBF888C1BE39FC60071B18A /* runeA_4.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = runeA_4.png; sourceTree = "<group>"; };
+		9CBF888E1BE39FCD0071B18A /* runeA_2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = runeA_2.png; sourceTree = "<group>"; };
 		9CDE45581BDDD33600B69475 /* MainGameLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainGameLayer.h; sourceTree = "<group>"; };
 		9CDE45591BDDD35B00B69475 /* MainGameLayer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = MainGameLayer.cpp; sourceTree = "<group>"; };
 		BF170DB012928DE900B8313A /* OpenGLES.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGLES.framework; path = System/Library/Frameworks/OpenGLES.framework; sourceTree = SDKROOT; };
@@ -1984,6 +1990,9 @@
 		9CBF87E01BE31DC60071B18A /* res */ = {
 			isa = PBXGroup;
 			children = (
+				9CBF888E1BE39FCD0071B18A /* runeA_2.png */,
+				9CBF888C1BE39FC60071B18A /* runeA_4.png */,
+				9CBF888A1BE39EA50071B18A /* bullet_02.png */,
 				9CBF87E11BE31DDD0071B18A /* 1000.plist */,
 				9CBF87E21BE31DDD0071B18A /* 1000.png */,
 				9CBF87E31BE31DDD0071B18A /* base.plist */,
@@ -2073,6 +2082,7 @@
 			files = (
 				9CBF88811BE31DDD0071B18A /* Player.png in Resources */,
 				7855E0E1153FEF240059DD9A /* Default.png in Resources */,
+				9CBF888F1BE39FCD0071B18A /* runeA_2.png in Resources */,
 				9CBF88391BE31DDD0071B18A /* boom.plist in Resources */,
 				9CBF88371BE31DDD0071B18A /* base.plist in Resources */,
 				9CBF887F1BE31DDD0071B18A /* markerfelt24shadow.png in Resources */,
@@ -2088,11 +2098,13 @@
 				D41A0AD1160F154A004552AE /* Default-568h@2x.png in Resources */,
 				D446FD6E16102124000ADA7B /* Default@2x.png in Resources */,
 				15A3D9961682F7F9002FB0C5 /* CMakeLists.txt in Resources */,
+				9CBF888B1BE39EA50071B18A /* bullet_02.png in Resources */,
 				9CBF88381BE31DDD0071B18A /* base.png in Resources */,
 				9CBF88841BE31DDD0071B18A /* use.plist in Resources */,
 				9CBF88851BE31DDD0071B18A /* use.png in Resources */,
 				1AFAF8BC16D35E4900DB1158 /* CloseNormal.png in Resources */,
 				9CBF883A1BE31DDD0071B18A /* boom.png in Resources */,
+				9CBF888D1BE39FC60071B18A /* runeA_4.png in Resources */,
 				9CBF88801BE31DDD0071B18A /* plane.png in Resources */,
 				1AFAF8BD16D35E4900DB1158 /* CloseSelected.png in Resources */,
 				1AFAF8BE16D35E4900DB1158 /* HelloWorld.png in Resources */,
