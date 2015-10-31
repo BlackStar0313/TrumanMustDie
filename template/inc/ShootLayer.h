@@ -40,7 +40,6 @@ public:
     void createBullet();
     void createPlayer();
     void LoadGame();
-    //CCAnimation* createAnimation(NGSTR pListName, int32 start, int32 end, NGSTR imgFormat, float delayPerUnit);
     
     //schedule函数
     void calcScoreAndBullet();
@@ -63,14 +62,14 @@ public:
 private:
     CCSprite *m_pPlayer;
     CCPoint m_targetLocation;
-    CCLabelTTF* m_pScore;
+    CCLabelBMFont* m_pScore;
     int m_difficulty;
     int m_bulletNum;
     int m_score;
     int m_second;
     
     list<CCSprite*> m_pBulletArray;
-    list<CCRect*> m_RectArray;
+    //list<CCRect*> m_RectArray;
     //CCArray *m_pBulletArray;
     //CCArray *m_pRectArray;
 //    CCArray *m_pEasyBulletArr;

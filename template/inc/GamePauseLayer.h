@@ -19,12 +19,11 @@ public:
     GamePauseLayer();
     ~GamePauseLayer();
     virtual bool init();
-    static CCScene* createScene();
+    static CCScene* createScene(CCRenderTexture *renderTexture);
     CREATE_FUNC(GamePauseLayer);
     
 public:
     void playBtnClick(CCObject* pSender);
-    
 };
 
 #endif /* GamePauseLayer_h */

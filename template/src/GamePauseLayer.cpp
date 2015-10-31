@@ -25,6 +25,7 @@ bool GamePauseLayer::init()
     }
     CCSize visibleSize = CCDirector::sharedDirector()->getVisibleSize();
     CCPoint origin = CCDirector::sharedDirector()->getVisibleOrigin();
+    
     CCMenuItemImage *playItem = CCMenuItemImage::create( "B1.png",
                                                           "B1S.png",
                                                           this,
@@ -38,11 +39,10 @@ bool GamePauseLayer::init()
     playLabel->setPosition(ccp(playItem->getPositionX(), playItem->getPositionY() + 5));
     this->addChild(playLabel, 1);
     
-    
     return true;
 }
 
-CCScene* GamePauseLayer::createScene()
+CCScene* GamePauseLayer::createScene(CCRenderTexture *renderTexture)
 {
     CCScene *scene = CCScene::create();
     
@@ -53,10 +53,20 @@ CCScene* GamePauseLayer::createScene()
     
     CCLayer *layer = GamePauseLayer::create();
     
-    scene->addChild(layer);
+    CCSize visibleSize = CCDirector::sharedDirector()->getVisibleSize();
+    CCPoint origin = CCDirector::sharedDirector()->getVisibleOrigin();
+    CCSprite *background = CCSprite::createWithTexture(renderTexture->getSprite()->getTexture());
+    background->setPosition(ccp(origin.x + background->getContentSize().width/2,
+                                origin.y + visibleSize.height/2));
+    background->setFlipY(true);            //翻转，因为UI坐标和OpenGL坐标不同
+    background->setColor(cocos2d::ccGRAY);
+    scene->addChild(background, 0);
+    
+    scene->addChild(layer, 1);
     
     return scene;
 }
+
 
 void GamePauseLayer::playBtnClick(CCObject* pSender)
 {

@@ -17,7 +17,12 @@
 
 USING_NS_CC;
 
-ShootLayer::ShootLayer() : m_pPlayer(NULL), m_difficulty(1), m_score(1), m_bulletNum(0), m_second(0) {
+ShootLayer::ShootLayer() :
+m_pPlayer(NULL),
+m_difficulty(1),
+m_score(1),
+m_bulletNum(0),
+m_second(0) {
     CCSize visibleSize = CCDirector::sharedDirector()->getVisibleSize();
     CCPoint origin = CCDirector::sharedDirector()->getVisibleOrigin();
     m_targetLocation.x = origin.x + visibleSize.width / 2;
@@ -59,16 +64,19 @@ void ShootLayer::onEnter()
 {
     //注册触碰响应事件
     CCDirector::sharedDirector()->getTouchDispatcher()->addTargetedDelegate(this,0,false);
-    CCLayer::onEnter();//一定不要忘了调用父类的onEnter
+    //调用父类的onEnter
+    CCLayer::onEnter();
 }
 
 void ShootLayer::onExit()
 {
     //注销触屏响应事件
     CCDirector::sharedDirector()->getTouchDispatcher()->removeDelegate(this);
-    CCLayer::onExit();//一定不要忘了调用父类的onExit
+    //调用父类的onExit
+    CCLayer::onExit();
 }
 
+//设置背景图片
 void ShootLayer::setBackground()
 {
     CCSize visibleSize = CCDirector::sharedDirector()->getVisibleSize();
@@ -79,13 +87,14 @@ void ShootLayer::setBackground()
     float winw = visibleSize.width; //获取屏幕宽度
     float winh = visibleSize.height;//获取屏幕高度
     
-    float spx = background->getTextureRect().getMaxX();
-    float spy = background->getTextureRect().getMaxY();
+    float spx = background->getContentSize().width;
+    float spy = background->getContentSize().height;
     
     background->setScaleX(winw / spx); //设置精灵宽度缩放比例
     background->setScaleY(winh / spy);
     this->addChild(background, 0);
 }
+
 
 void ShootLayer::LoadGame()
 {
@@ -93,7 +102,7 @@ void ShootLayer::LoadGame()
     CCPoint origin = CCDirector::sharedDirector()->getVisibleOrigin();
     
     //分数显示
-    m_pScore = CCLabelTTF::create("0", "Arial", 50);
+    m_pScore = CCLabelBMFont::create("0", "markerfelt24shadow.fnt");
     m_pScore->setPosition(ccp(origin.x + visibleSize.width / 2, origin.y + visibleSize.height * 3 / 4));
     this->addChild(m_pScore, 1);
     
@@ -123,8 +132,8 @@ void ShootLayer::LoadGame()
     
     scheduleUpdate();
     
-    //every second update
-    schedule(schedule_selector(ShootLayer::updateEverySecond), 1.0f, kCCRepeatForever, 1.0f);
+    //每秒更新
+    schedule(schedule_selector(ShootLayer::updateEverySecond), 1.0f, kCCRepeatForever, 0.0f);
     
 }
 
@@ -149,17 +158,17 @@ CCPoint randChoosePosition()
     switch (direction) {
         case 0:
         {
-            return ccp(-10, RANDOM(-10, int(visibleSize.height + 10)));
+            return ccp(-20, RANDOM(-20, int(visibleSize.height + 20)));
             break;
         }
         case 1:
         {
-            return ccp(RANDOM(-10, int(visibleSize.width)), visibleSize.height + 10);
+            return ccp(RANDOM(-20, int(visibleSize.width)), visibleSize.height + 20);
             break;
         }
         case 2:
         {
-            return ccp(visibleSize.width + 10, RANDOM(0, int(visibleSize.height + 10)));
+            return ccp(visibleSize.width + 20, RANDOM(0, int(visibleSize.height + 20)));
             break;
         }
         default:
@@ -204,8 +213,9 @@ void ShootLayer::createBullet()
             CCActionInterval *rotate = CCRotateTo::create(0.1, atan(x / y) * 180 / PI - 90);
 //            bullet->runAction(rotate);
             
-            CCActionInterval *move = CCMoveTo::create(3, m_pPlayer->getPosition());
-            CCSequence *straightMove = CCSequence::create(rotate, move, CCCallFuncN::create(this,callfuncN_selector(ShootLayer::boom)), NULL);
+            CCActionInterval *move = CCMoveTo::create(2, m_pPlayer->getPosition());
+            CCActionInterval *move_ease_in = CCEaseIn::create((CCActionInterval*)(move->copy()->autorelease()), 4.0f);
+            CCSequence *straightMove = CCSequence::create(rotate, move_ease_in, CCCallFuncN::create(this,callfuncN_selector(ShootLayer::boom)), NULL);
             bullet->runAction(straightMove);
             break;
         }
@@ -229,7 +239,6 @@ void ShootLayer::createBullet()
             break;
     }
     this->addChild(bullet, 1);
-    //CCRect *bulletRect = CCRect(bullet->getPositionX() - bullet->getContentSize().width / 2, bullet->getPositionY() - bullet->getContentSize().height / 2, bullet->getContentSize().width, bullet->getContentSize().height);
     m_pBulletArray.push_back(bullet);
 }
 
@@ -245,21 +254,14 @@ void ShootLayer::update(float dt)
             if (((*it)->boundingBox()).intersectsRect(m_pPlayer->boundingBox()))
             {
                 m_pPlayer->stopAllActions();
-//                removeChild(m_pPlayer);
-//                m_pPlayer = NULL;
-//                (*it)->stopAllActions();
-//                removeChild(*it);
-//                (*it) = NULL;
+                removeChild(m_pPlayer);
+                m_pPlayer = NULL;
+                (*it)->stopAllActions();
+                removeChild(*it);
+                (*it) = NULL;
                 CCDirector::sharedDirector()->replaceScene(GameOverLayer::createScene());
                 break;
             }
-//            else if ((*it)->getPositionX() < 0 || (*it)->getPositionX() > visibleSize.width || (*it)->getPositionY() < 0 || (*it)->getPositionY() > visibleSize.height)
-//                {
-//                    (*it)->stopAllActions();
-//                    removeChild((*it));
-//                    m_pBulletArray.remove((*it));
-//                    (*it) = NULL;
-//                }
         }
     }
 }
@@ -275,7 +277,6 @@ void ShootLayer::calcScoreAndBullet()
     CCLOG("bullet num %d", m_bulletNum);
 }
 #endif
-
 
 void ShootLayer::updateEverySecond()
 {
@@ -309,17 +310,17 @@ void ShootLayer::playMove()
         //double angle = atan(x / y) * 180 / PI;
         double angle;
         CCPoint diff;
-        if (x >= 0)
-        {
             angle = atan(y / x);
-        }
-        else
-        {
-            angle = atan(-y / x);
-        }
         diff.x = cos(angle);
         diff.y = sin(angle);
-        m_pPlayer->setPosition(m_pPlayer->getPosition() + diff * 3);
+        CCLOG("angle %f", angle);
+        if ((x < 0 && y < 0) || (x < 0 && y > 0))
+        {
+            diff.x = -diff.x;
+            diff.y = -diff.y;
+        }
+        CCLOG("diff (%f, %f)", diff.x, diff.y);
+        m_pPlayer->setPosition(m_pPlayer->getPosition() + diff * 5);
     }
 }
 
@@ -348,8 +349,8 @@ void ShootLayer::boom(CCNode *pSender)
     
     pSender->runAction(CCSequence::create(action, CCCallFuncN::create(this,callfuncN_selector(ShootLayer::remove)), NULL));
     
-    CCRect *rectBoom = new CCRect(pSender->getPositionX() - pSender->getContentSize().width / 2, pSender->getPositionY() - pSender->getContentSize().height / 2, 80, 80);
-    m_RectArray.push_back(rectBoom);
+    //CCRect *rectBoom = new CCRect(pSender->getPositionX() - pSender->getContentSize().width / 2, pSender->getPositionY() - pSender->getContentSize().height / 2, 80, 80);
+    //m_RectArray.push_back(rectBoom);
 }
 
 void ShootLayer::remove(CCNode *pSender)
@@ -369,8 +370,17 @@ void ShootLayer::pauseBtnClick(CCObject *pSender)
     if (NULL == pSender) {
         return;
     }
-    CCScene *pScene = GamePauseLayer::createScene();
-    CCDirector::sharedDirector()->pushScene(pScene);
+    
+    CCSize visibleSize = CCDirector::sharedDirector()->getVisibleSize();
+    CCRenderTexture *renderTexture = CCRenderTexture::create(visibleSize.width,visibleSize.height);
+    
+    //遍历当前类的所有子节点信息，画入renderTexture中。
+    //这里类似截图。
+    renderTexture->begin();
+    this->getParent()->visit();
+    renderTexture->end();
+    
+    CCDirector::sharedDirector()->pushScene(GamePauseLayer::createScene(renderTexture));
 }
 
 //触屏事件
@@ -379,7 +389,7 @@ bool ShootLayer::ccTouchBegan(CCTouch* touch,CCEvent* event)
     CCLOG("ccTouchBegan");
     schedule(schedule_selector(ShootLayer::playMove), 0.0f, kCCRepeatForever, 0.0f);
     m_targetLocation = touch->getLocation();
-    CCLOG("m_targetLocation (%f, %f)",m_targetLocation.x, m_targetLocation.y);
+    //CCLOG("m_targetLocation (%f, %f)",m_targetLocation.x, m_targetLocation.y);
     return true;
 }
 
