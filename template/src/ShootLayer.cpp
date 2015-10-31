@@ -32,6 +32,12 @@ m_second(0) {
 ShootLayer::~ShootLayer()
 {
     CCDirector::sharedDirector()->getTouchDispatcher()->removeDelegate(this);
+    for (auto it = m_pBulletArray.begin(); it != m_pBulletArray.end(); it++)
+    {
+        removeChild((*it));
+        *it = NULL;
+    }
+    m_pBulletArray.clear();
 }
 
 CCScene *ShootLayer::createScene()
@@ -183,6 +189,10 @@ CCPoint randChoosePosition()
 //create bullet according to difficulty
 void ShootLayer::createBullet()
 {
+    if ( !m_pPlayer )
+    {
+        return ;
+    }
     int kind = RANDOM(1, 4);
     CCSprite *bullet = NULL;
     switch (kind) {
@@ -195,7 +205,6 @@ void ShootLayer::createBullet()
             float x = bullet->getPositionX() - m_pPlayer->getPositionX(), y = bullet->getPositionY() - m_pPlayer->getPositionY();
             //CCLOG("atan %f", atan(x / y) * 180 / PI);
             CCActionInterval *rotate = CCRotateTo::create(0.1, atan(x / y) * 180 / PI);
-            //bullet->runAction(rotate);
             
             CCActionInterval *move = CCMoveTo::create(3, m_pPlayer->getPosition());
             CCSequence *straightMove = CCSequence::create(rotate, move, CCCallFuncN::create(this,callfuncN_selector(ShootLayer::boom)), NULL);
@@ -211,7 +220,6 @@ void ShootLayer::createBullet()
             float x = bullet->getPositionX() - m_pPlayer->getPositionX(), y = bullet->getPositionY() - m_pPlayer->getPositionY();
             //CCLOG("atan %f", atan(x / y) * 180 / PI);
             CCActionInterval *rotate = CCRotateTo::create(0.1, atan(x / y) * 180 / PI - 90);
-//            bullet->runAction(rotate);
             
             CCActionInterval *move = CCMoveTo::create(2, m_pPlayer->getPosition());
             CCActionInterval *move_ease_in = CCEaseIn::create((CCActionInterval*)(move->copy()->autorelease()), 4.0f);
@@ -228,7 +236,6 @@ void ShootLayer::createBullet()
             float x = bullet->getPositionX() - m_pPlayer->getPositionX(), y = bullet->getPositionY() - m_pPlayer->getPositionY();
             //CCLOG("atan %f", atan(x / y) * 180 / PI);
             CCActionInterval *rotate = CCRotateTo::create(0.1, atan(x / y) * 180 / PI - 90);
-            //bullet->runAction(rotate);
             
             CCActionInterval *move = CCMoveTo::create(3, m_pPlayer->getPosition());
             CCSequence *straightMove = CCSequence::create(rotate, move, CCCallFuncN::create(this,callfuncN_selector(ShootLayer::boom)), NULL);
@@ -238,8 +245,11 @@ void ShootLayer::createBullet()
         default:
             break;
     }
-    this->addChild(bullet, 1);
-    m_pBulletArray.push_back(bullet);
+    if (bullet)
+    {
+        this->addChild(bullet, 1);
+        m_pBulletArray.push_back(bullet);
+    }
 }
 
 //schedule函数
@@ -259,6 +269,7 @@ void ShootLayer::update(float dt)
                 (*it)->stopAllActions();
                 removeChild(*it);
                 (*it) = NULL;
+                unscheduleAllSelectors();
                 CCDirector::sharedDirector()->replaceScene(GameOverLayer::createScene());
                 break;
             }
