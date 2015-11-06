@@ -25,17 +25,11 @@ public:
     
     virtual bool init();
     
-    void onEnter();
-    
-    void onExit();
-    
     CREATE_FUNC(StartLayer);
     
 public:
     bool ccTouchBegan(CCTouch *pTouch, CCEvent *pEvent);
     void ccTouchEnded(CCTouch *touch, CCEvent *event);
-    
-    
 };
 
 #endif /* StartLayer_h */

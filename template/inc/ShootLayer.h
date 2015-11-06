@@ -10,9 +10,13 @@
 #define __SHOOTLAYER_H__
 
 #include <cocos2d.h>
-#include <List>
-#define RANDOM(a,b) (rand()%((b)-(a)) + (a))
-#define ABS(a) ((a) > 0 ? (a) : (-a))
+#include <time.h>
+#include <math.h>
+#include "GameOverLayer.h"
+#include "GamePauseLayer.h"
+#include "CBullet.h"
+#include "CPlane.h"
+#include "CBulletManager.h"
 
 using namespace std;
 USING_NS_CC;
@@ -28,10 +32,6 @@ public:
     
     static CCScene* createScene();
     
-    void onEnter();
-    
-    void onExit();
-    
     CREATE_FUNC(ShootLayer);
     
 public:
@@ -45,11 +45,6 @@ public:
     void calcScoreAndBullet();
     void update(float dt);
     void updateEverySecond();
-    void playMove();
-    
-    //callback函数
-    void boom(CCNode *pSender);
-    void remove(CCNode *pSender);
     
     //click事件
     void pauseBtnClick(CCObject *pSender);
@@ -60,22 +55,13 @@ public:
     void ccTouchEnded(CCTouch *touch,CCEvent *event);
     
 private:
-    CCSprite *m_pPlayer;
+    CPlane *m_pPlayer;
     CCPoint m_targetLocation;
     CCLabelBMFont* m_pScore;
     int m_difficulty;
     int m_bulletNum;
     int m_score;
     int m_second;
-    
-    list<CCSprite*> m_pBulletArray;
-    //list<CCRect*> m_RectArray;
-    //CCArray *m_pBulletArray;
-    //CCArray *m_pRectArray;
-//    CCArray *m_pEasyBulletArr;
-//    CCArray *m_pCommonBulletArr;
-//    CCArray *m_pDiffcultBulletArr;
-    
 };
 
 

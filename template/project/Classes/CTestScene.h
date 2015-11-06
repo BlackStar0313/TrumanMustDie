@@ -11,6 +11,8 @@
 
 #include <stdio.h>
 #include "cocos2d.h"
+#include <map>
+using namespace std;
 
 class CTestScene : public cocos2d::CCLayer
 {
@@ -19,13 +21,15 @@ public:
     virtual bool init();
     
     // there's no 'id' in cpp, so we recommend returning the class instance pointer
-    static cocos2d::CCScene* scene();
+    static cocos2d::CCScene* createScene();
     
     // implement the "static node()" method manually
     CREATE_FUNC(CTestScene);
     
 private:
     void callBack(CCNode* _node);
+    void update(float dt);
+    cocos2d::CCSprite *m_p;
 };
 
 

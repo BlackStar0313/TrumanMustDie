@@ -32,17 +32,6 @@ CCScene* StartLayer::createScene()
     return scene;
 }
 
-void StartLayer::onEnter()
-{
-    CCDirector::sharedDirector()->getTouchDispatcher()->addTargetedDelegate(this, 0, false);
-    CCLayer::onEnter();
-}
-
-void StartLayer::onExit()
-{
-    CCDirector::sharedDirector()->getTouchDispatcher()->removeDelegate(this);
-    CCLayer::onExit();
-}
 
 bool StartLayer::init()
 {
@@ -50,12 +39,11 @@ bool StartLayer::init()
         return false;
     }
     
+    setTouchEnabled(true);
+    setTouchMode(ccTouchesMode::kCCTouchesOneByOne);
+    
     CCSize visibleSize = CCDirector::sharedDirector()->getVisibleSize();
     CCPoint origin = CCDirector::sharedDirector()->getVisibleOrigin();
-    
-//    CCSprite *playBtn = CCSprite::createWithSpriteFrameName("B1.png");
-//    playBtn->setPosition(ccp(origin.x + visibleSize.width/2, origin.y + visibleSize.height * 2 / 3));
-//    this->addChild(playBtn, 2);
     
     CCLabelTTF* playLabel = CCLabelTTF::create("Press Screen Start", "Arial", 50);
     playLabel->setPosition(ccp(origin.x + visibleSize.width/2, origin.y + visibleSize.height * 2 / 3));

@@ -12,6 +12,11 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <cocos2d.h>
+#include "CTestScene.h"
+#include "MainGameLayer.h"
+#include "StartLayer.h"
+#include "HelloWorldScene.h"
+
 
 USING_NS_CC;
 

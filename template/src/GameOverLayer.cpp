@@ -58,6 +58,7 @@ CCScene* GameOverLayer::createScene()
 
 void GameOverLayer::restartBtnClick(CCObject *pSender)
 {
+    CBulletManager::GetInstance()->clear();
     CCDirector::sharedDirector()->replaceScene(ShootLayer::createScene());
 }
 

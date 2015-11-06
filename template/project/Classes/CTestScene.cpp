@@ -9,7 +9,7 @@
 #include "CTestScene.h"
 USING_NS_CC;
 
-CCScene* CTestScene::scene()
+CCScene* CTestScene::createScene()
 {
     // 'scene' is an autorelease object
     CCScene *scene = CCScene::create();
@@ -31,17 +31,40 @@ bool CTestScene::init()
         return false;
     }
     
-    CCSize visibleSize = CCDirector::sharedDirector()->getVisibleSize();
-    CCPoint origin = CCDirector::sharedDirector()->getVisibleOrigin();
+//    CCSize visibleSize = CCDirector::sharedDirector()->getVisibleSize();
+//    CCPoint origin = CCDirector::sharedDirector()->getVisibleOrigin();
+//    
+//    CCSprite* pSprite = CCSprite::createWithSpriteFrameName("runeD_5.png");
+//    //pSprite->setPosition(ccp(visibleSize.width / 2 , visibleSize.height / 2));
+//    
+//    pSprite->setPosition(ccp(200, 200));
+//    this->addChild(pSprite);
+//    
+//    CCActionInterval *moveLeft = CCMoveTo::create(2, ccp(170,200));
+//    CCActionInterval *moveRight = CCMoveTo::create(2, ccp(230,200));
+//    //CCSequence* pSeq = CCSequence::create(CCMoveBy::create(4.0f, ccp(500, 200)), CCCallFuncN::create(pSprite, callfuncN_selector(CTestScene::callBack)) , NULL);
+//    //pSprite->runAction(pSeq);
+//    //CCSequence *seq = CCSpawn::create(moveLeft, moveRight, NULL);
+//    //pSprite->runAction(seq);
+//    
+//    pSprite->runAction(moveLeft);
+//    pSprite->runAction(moveRight);
     
-    CCSprite* pSprite = CCSprite::createWithSpriteFrameName("runeD_5.png");
-    pSprite->setPosition(ccp(visibleSize.width / 2 , visibleSize.height / 2));
-    this->addChild(pSprite);
+    CCSprite* m_p = CCSprite::create("plane.png");
+    //CC_SAFE_RETAIN(p);
+    m_p->setPosition(ccp(200, 200));
+    this->addChild(m_p);
     
-    CCSequence* pSeq = CCSequence::create(CCMoveBy::create(4.0f, ccp(500, 200)), CCCallFuncN::create(pSprite, callfuncN_selector(CTestScene::callBack)) , NULL);
-    pSprite->runAction(pSeq);
+    map<int,map<int, int> > my_Map;
+    
+//    CC_SAFE_RETAIN(p);
     
     return true;
+}
+
+void CTestScene::update(float dt)
+{
+    //this->addChild(m_p);
 }
 
 void CTestScene::callBack(cocos2d::CCNode *_node)

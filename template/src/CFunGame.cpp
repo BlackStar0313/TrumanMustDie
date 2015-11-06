@@ -7,10 +7,6 @@
 //
 
 #include "CFunGame.h"
-#include "CTestScene.h"
-#include "MainGameLayer.h"
-#include "StartLayer.h"
-#include "HelloWorldScene.h"
 
 CFunGame* CFunGame::m_pThis = NULL;
 
